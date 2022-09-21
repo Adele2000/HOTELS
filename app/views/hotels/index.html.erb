@@ -1,5 +1,33 @@
-<ul>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/drnoyqnck/image/upload/v1663706408/Biarritz_gepcy6.jpg);">
+  <div class="container">
+    <h1> Découvrez nos hôtels</h1>
+  </div>
+</div>
+
+<div class="container mt-4">
+<h2>Toutes nos chambres</h2>
+
+<div class="cards">
   <% @hotels.each do |hotel| %>
-    <li><%= hotel.name %></li>
+      <%= link_to hotel_path(hotel) , :action => 'go' do %>
+          <div class="card-trip">
+            <%= cl_image_tag hotel.photo.key, crop: :fill, class: "img" %>
+            <div class="card-trip-infos">
+              <div>
+                <h2><%=hotel.name%></h2>
+                <p>En savoir plus</p>
+              </div>
+              <h2 class="card-trip-pricing"><%=hotel.price%>€</h2>
+            </div>
+          </div>
+      <% end %>
   <% end %>
-</ul>
+</div>
+
+</div>
+
+<%# <div class="image">
+  <% if hotel.photo.attached? %>
+    <%# <%= cl_image_tag hotel.photo.key, crop: :fill, class: "img" %>
+  <%# <% end %>
+<%# </div>  %>

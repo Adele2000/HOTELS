@@ -6,6 +6,14 @@ class HotelsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+    @bookings = @hotel.bookings
+    @bookings_dates = @bookings.map do |booking|
+      {
+        from: booking.start_date,
+        to:   booking.end_date
+      }
+    end
   end
 
   def new
@@ -34,7 +42,7 @@ class HotelsController < ApplicationController
 private
 
   def hotel_params
-    params.require(:hotel).permit(:name, :address, :description, :price, :room_type, :user_id)
+    params.require(:hotel).permit(:name, :address, :description, :price, :room_type, :user_id, :photo)
   end
 
   def set_hotel

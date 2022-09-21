@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-sm-6">
+      <div class="wrapper" id="booking-recap-wrapper">
+        <div class="booking-recap-container">
+          <div class="text-center">
+            <h1>Ta réservation</h1>
+            <h4> <%= "#{@booking.hotel.user.username}'s #{@booking.hotel.name}"%></h4>
+            <%= "#{@booking.start_date.strftime('%d/%m/%Y')} - #{@booking.end_date.strftime('%d/%m/%Y')}"%>
+            <div class="btn-show-more">
+              <%= link_to "Retour à la liste", hotels_path, class: "btn btn-blue" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

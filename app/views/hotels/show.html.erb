@@ -1,0 +1,40 @@
+<div class="container-fluid">
+
+  <div class="row mt-4">
+    <div class="col-12 col-md-6">
+      <div class="image float-right">
+        <% if @hotel.photo.attached? %>
+          <%= cl_image_tag @hotel.photo.key, width: 500, height: 300, crop: :fill %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 float-left">
+      <h1 class=""><%=@hotel.name%></h1>
+      <%=@hotel.description%>
+      <p class="mt-4"> Chambre pour <%=@hotel.room_type%>personne </p>
+      <p class="mt-4"><%=@hotel.price%>€ le nuit</p>
+    </div>
+  </div>
+
+ <div class="container">
+  <div class="form-wrapper">
+    <h2>Réserver la chambre</h2>
+    <%= simple_form_for [@hotel, @booking] do |f| %>
+      <%= f.input :start_date, label: "Sélectionnez vos dates:",
+                               as: :string,
+                               required: false,
+                               input_html: { id: "range_start", class: "d-none"} %>
+      <%= f.input :end_date, label: false,
+                             as: :string,
+                             required: false,
+                             input_html: { id: "range_end", class: "d-none" } %>
+      <%= f.button :submit, "Go", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+  <div id="booking-form-div"
+     data-bookings="<%= @bookings_dates.to_json %>">
+</div>
+
+</div>
